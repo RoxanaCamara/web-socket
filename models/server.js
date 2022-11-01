@@ -41,7 +41,14 @@ class Server {
     }
 
     sockets(){
-
+        this.io.on("connection", (socket) => {
+            console.log('Cliente conectado')   
+            
+            socket.on('enviar-mensaje', (payload, callback) => {
+                console.log(payload) 
+                callback('12313213')
+            })
+        });
     }
 
     listen(){
