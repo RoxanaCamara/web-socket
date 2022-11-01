@@ -9,21 +9,29 @@ const btnEnviar = document.getElementById('btnEnviar')
 const socket = io()
 
 socket.on("connect", () => {
-    console.log('Cliente conectado', socket.id)  
+    console.log('Cliente conectado Front', socket.id)  
     offline.style.display= 'none'
     online.style.display= ''  
 })
 
 socket.on("disconnect", () => {
-    console.log('Cliente desconectado')  
+    console.log('Cliente desconectado Front')  
     online.style.display= 'none'
     offline.style.display= '' 
 })
 
 
-btnEnviar.addEventListener( 'click', payload, (id) => {
-    //const mensaje = textMensaje.value;
-    //console.log(mensaje)
-    //socket.emit( 'enviar-mensaje', mensaje)
-    console.log(`Cliente ${id} ha enviando un mensaje`) 
+socket.on('enviar-mensaje', payload => {
+    console.log(payload) 
+})  
+
+btnEnviar.addEventListener( 'click', () => {
+    const mensaje = textMensaje.value;
+    const payload = {
+        msg: mensaje,
+        id: socket.id
+    }
+    socket.emit( 'enviar-mensaje', payload, (id)=> {
+        console.log(`Cliente ${id} ha enviando un mensaje, Front`) 
+    }  )
 })
