@@ -20,9 +20,8 @@ class TicketControl {
     }
     init () {
         const { hoy, ultimos4, ultimo, tickets } = require('../data.json')
-        console.log(data)
         if( hoy == this.hoy){
-            this.ultimo= hoy;
+            this.ultimo= ultimo;
             this.tickets= tickets;
             this.ultimos4= ultimos4;
         }
@@ -45,17 +44,17 @@ class TicketControl {
         if(this.tickets.length == 0){
             return null
         }
-        const ticket = this.tickets.unshift()
+        const ticket = this.tickets.shift()
         ticket.escritorio= escritorio
         this.ultimos4.unshift(ticket)
         if( this.ultimos4.length > 4){
             this.ultimos4.splice(-1,1)
         }
         this.guardarDB()
-        return ticket
+        return ticket.numero
     }
 
-    get toJson() {
+    toJson() {
         return {
             ultimo: this.ultimo,
             hoy: this.hoy,

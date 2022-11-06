@@ -1,6 +1,1 @@
-{
-    "ultimo": 0,
-    "hoy": 0,
-    "ticktes": [],
-    "ultimos4": []
-}
+{"ultimo":3,"hoy":6,"tickets":[{"numero":1,"escritorio":null},{"numero":2,"escritorio":null},{"numero":3,"escritorio":null}],"ultimos4":[]}

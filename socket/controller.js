@@ -2,12 +2,37 @@ const TicketControl = require('../models/ticketControl')
 const ticketControl = new TicketControl()
 
 const socketController = (socket) => {
+
+    socket.emit('ultimo-ticket', (ticketControl.ultimo))
+    socket.broadcast.emit('estado-actual', (ticketControl.ultimos4))
     
-    socket.on('enviar-mensaje', (payload, callback) => {
-        callback(socket.id)
-        /*Envia lo que contenga ese obj payload a todos los clientes conectados, excepto a quien lo envio */
-        socket.broadcast.emit('enviar-mensaje', payload)
+    socket.on('siguiente-ticket', (payload, callback) => {
+        const siguiente =  ticketControl.siguiente()
+        callback(siguiente)
     })
+
+    socket.on("atender-ticket", ({ escritorio }, callback) => {
+        if(!escritorio){
+            return {
+                msg: 'El escritorio es obligatorio',
+                ok: false
+            }
+            
+        }
+        const ticket = ticketControl.atenderTicket(escritorio)
+        if(!ticket){
+            return {
+                msg: 'No hay tickets para atender',
+                ok: false
+            }
+        }else{
+            callback({
+                ok: true, 
+                ticket
+            })
+        }
+    })
+
 
     socket.on("disconnect", () => {
     })
