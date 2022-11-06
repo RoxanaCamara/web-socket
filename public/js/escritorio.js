@@ -16,17 +16,13 @@ const lblPendientes = document.getElementById('lblPendientes')
 
 const socket = io()
 alert.style.display = 'none';
-ultimoTicket.innerText= 'msg1'
+ultimoTicket.innerText= '---'
 
 socket.on("cola-tickets", (ticket) => {
-    console.log("🚀 ~ file: escritorio.js ~ line 24 ~ socket.on ~ ticket", ticket)
-    lblPendientes.innerText= ''+ ticket
+    lblPendientes.innerText=  ticket
 })
 
-/*socket.on("ultimo-ticket-atendido", (ticket) => {
-    lblPendientes.innerText= 'Ticket '+ ticket
-})*/
- 
+
 BtnAtenderTicket.addEventListener( 'click', () => {
     socket.emit( 'atender-ticket', ({escritorio}), ({ ok, msg, ticket })=> {
         
@@ -38,6 +34,6 @@ BtnAtenderTicket.addEventListener( 'click', () => {
             ultimoTicket.innerText = 'Ticket ' + ticket
         }
     }
-)
-   
+) 
+    console.log("🚀 ~ file: escritorio.js ~ line 41 ~ socket.emit ~  ok, msg, ticket",  ok, msg, ticket)
 })

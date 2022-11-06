@@ -5,10 +5,7 @@ const socketController = (socket) => {
 
     socket.emit('ultimo-ticket', (ticketControl.ultimo))
     socket.emit('estado-actual', (ticketControl.ultimos4))
-
-
-    //socket.on('cola-tickets', (ticketControl.tickets.length))
-   
+    socket.emit('cola-tickets', (ticketControl.tickets.length))   
     
     socket.on('siguiente-ticket', (payload, callback) => {
         const siguiente =  ticketControl.siguiente()
@@ -26,6 +23,7 @@ const socketController = (socket) => {
         const ticket = ticketControl.atenderTicket(escritorio)
         //notificar el cambio a todos
         socket.broadcast.emit('estado-actual', (ticketControl.ultimos4))
+        socket.broadcast.emit('cola-tickets', (ticketControl.tickets.length))
         if(!ticket){
             return {
                 msg: 'No hay tickets para atender',
