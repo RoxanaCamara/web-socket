@@ -1,1 +1,32 @@
-{"ultimo":3,"hoy":6,"tickets":[{"numero":1,"escritorio":null},{"numero":2,"escritorio":null},{"numero":3,"escritorio":null}],"ultimos4":[]}
+{
+    "ultimo": 7,
+    "hoy": 6,
+    "tickets": [
+        {
+            "numero": 6,
+            "escritorio": null
+        },
+        {
+            "numero": 7,
+            "escritorio": null
+        }
+    ],
+    "ultimos4": [
+        {
+            "numero": 5,
+            "escritorio": "Escritorio 1"
+        },
+        {
+            "numero": 4,
+            "escritorio": "Escritorio 1"
+        },
+        {
+            "numero": 3,
+            "escritorio": "Escritorio 1"
+        },
+        {
+            "numero": 2,
+            "escritorio": "Escritorio 1"
+        }
+    ]
+}

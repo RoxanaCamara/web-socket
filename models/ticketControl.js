@@ -24,6 +24,8 @@ class TicketControl {
             this.ultimo= ultimo;
             this.tickets= tickets;
             this.ultimos4= ultimos4;
+        }else{
+            this.guardarDB()
         }
     }
 

@@ -14,6 +14,7 @@ socket.on("connect", () => {
 socket.on("ultimo-ticket", (ticket) => {
     lblNuevoTicket.innerText = 'Ticket '+ ticket
 })
+
 socket.on("disconnect", () => {
     generarNuevoTicket.disabled= true 
 })
